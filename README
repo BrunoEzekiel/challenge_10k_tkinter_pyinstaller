@@ -1,0 +1,161 @@
+# 💰 10K Challenge in 141 Days
+
+This is a simple savings tracker built with Python and Tkinter. The goal is to save a total of R$10,000 in 141 days, gradually increasing the daily amount.
+
+## 🧠 How it Works
+
+- Each day, click **"Mark Day as Complete"** to register your progress.
+- The app saves the progress in `progresso.json`.
+- You can view your status at any time with **"View Status"**.
+
+## 📦 Requirements
+
+- Python 3.x
+- Tkinter (comes with Python)
+
+## 🚀 To Run
+
+```bash
+python challenge_10k.py
+💸 Desafio R$ 10.000 em 141 Dias
+Este script Python é uma ferramenta simples para acompanhar o progresso de um desafio financeiro: economizar R$ 10.000 em 141 dias. Ele registra os dias completados e calcula o total acumulado com base em valores diários crescentes.
+
+📁 Arquivo Principal
+python
+Copiar
+Editar
+import json
+import os
+from datetime import date
+Importa bibliotecas:
+
+json: para ler e gravar o progresso em arquivo JSON.
+
+os: para verificar se o arquivo já existe.
+
+date da datetime: (embora não esteja sendo usado no script atual).
+
+📄 Configurações Iniciais
+python
+Copiar
+Editar
+ARQUIVO_PROGRESO = "progresso.json"
+Define o nome do arquivo onde os dados de progresso serão armazenados.
+
+python
+Copiar
+Editar
+dias = list(range(1, 142))
+valores = [i for i in dias]
+Cria uma lista de 141 dias (de 1 até 141) e atribui a cada dia um valor correspondente ao seu número (Ex: Dia 1 = R$1, Dia 2 = R$2, ..., Dia 141 = R$141).
+
+📥 Função: carregar_progresso
+python
+Copiar
+Editar
+def carregar_progresso():
+    if os.path.exists(ARQUIVO_PROGRESO):
+        with open(ARQUIVO_PROGRESO, "r") as f:
+            return json.load(f)
+    return {"dias_completos": []}
+Verifica se o arquivo JSON já existe:
+
+Se sim, carrega os dados salvos.
+
+Se não, retorna um dicionário com a lista vazia de dias completados.
+
+💾 Função: salvar_progresso
+python
+Copiar
+Editar
+def salvar_progresso(progresso):
+    with open(ARQUIVO_PROGRESO, "w") as f:
+        json.dump(progresso, f)
+Salva o progresso atual no arquivo JSON, sobrescrevendo os dados anteriores.
+
+📊 Função: mostrar_status
+python
+Copiar
+Editar
+def mostrar_status(progresso):
+    dias_completos = progresso["dias_completos"]
+    total = sum(valores[dia - 1] for dia in dias_completos)
+    ...
+Exibe o status atual do desafio:
+
+Quantos dias foram completados.
+
+Quanto foi acumulado até o momento.
+
+Qual o próximo valor a poupar.
+
+Se todos os dias foram completados, mostra uma mensagem de parabéns.
+
+✅ Função: marcar_dia
+python
+Copiar
+Editar
+def marcar_dia(progresso):
+    proximo_dia = len(progresso["dias_completos"]) + 1
+    ...
+Marca o próximo dia como completo:
+
+Adiciona o dia na lista de dias completos.
+
+Salva o progresso.
+
+Informa o usuário.
+
+Se todos os dias já foram registrados, informa que o desafio foi finalizado.
+
+📋 Função: menu
+python
+Copiar
+Editar
+def menu():
+    progresso = carregar_progresso()
+    ...
+Exibe um menu com as opções:
+
+Ver o status do progresso.
+
+Marcar o dia atual como completo.
+
+Sair do programa.
+
+Usa input() para ler a escolha do usuário e executa a ação correspondente.
+
+▶️ Execução Principal
+python
+Copiar
+Editar
+if __name__ == "__main__":
+    menu()
+Garante que o menu só seja exibido quando o arquivo for executado diretamente (e não importado como módulo).
+
+📦 Requisitos
+Este script funciona com Python 3.x e não requer pacotes externos além da biblioteca padrão.
+
+💾 Arquivo de Progresso
+O progresso é salvo no arquivo progresso.json automaticamente após cada marcação de dia.
+
+Formato:
+
+json
+Copiar
+Editar
+{
+  "dias_completos": [1, 2, 3, ...]
+}
+🚀 Como Usar
+Execute o script:
+
+bash
+Copiar
+Editar
+python nome_do_arquivo.py
+Use o menu para marcar dias e visualizar seu progresso.
+
+🎯 Objetivo Final
+Ao completar os 141 dias, você terá economizado um total de R$ 10.011,00 (soma de 1 a 141).
+

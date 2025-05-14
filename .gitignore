@@ -1,0 +1,16 @@
+# Ignore pastas de build e cache do Python
+__pycache__/
+*.pyc
+
+# Ignore arquivos e pastas do PyInstaller
+build/
+dist/
+*.spec
+
+# Ignore arquivo de progresso
+progresso.json
+
+#Ignore o ambiente de desenvolvimento
+venv
+.venv
+env
